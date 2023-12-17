@@ -35,7 +35,7 @@
                 // Call Custom Vision for image classification
                 $imagePath = $imageDirectory . $fileName;
                 $customVisionEndpoint = "https://porjectpredictionfinal.cognitiveservices.azure.com/"; // Replace with your Custom Vision endpoint
-                $customVisionPredictionKey = "31dabc7d9cfb475fbba3ac1d13898ac7"; // Replace with your Custom Vision prediction key
+                $customVisionPredictionKey = "0881faa437b44587849fb6f0374932be"; // Replace with your Custom Vision prediction key
                 $customVisionIterationId = "044e4e9b-23e5-44c3-9cf0-86b754c966f2"; // Replace with your Custom Vision iteration ID
 
                 // Create a POST request to the Custom Vision prediction endpoint
