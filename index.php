@@ -33,7 +33,36 @@
                 $fileName = $_FILES['image']['name'];
 
                 // Call Custom Vision for image classification
-                // ... (previous code for Custom Vision)
+                $imagePath = $imageDirectory . $fileName;
+                $customVisionEndpoint = "https://porjectpredictionfinal.cognitiveservices.azure.com/"; // Replace with your Custom Vision endpoint
+                $customVisionPredictionKey = "0881faa437b44587849fb6f0374932be"; // Replace with your Custom Vision prediction key
+                $customVisionIterationId = "d28e2e61-d67a-46f6-a5b0-8499f2c165ea"; // Replace with your Custom Vision iteration ID
+
+                // Create a POST request to the Custom Vision prediction endpoint
+                $ch = curl_init($customVisionEndpoint . "/customvision/v3.0/Prediction/$customVisionIterationId/classify/iterations/Iteration1/image");
+                $imageData = file_get_contents($imagePath);
+
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $imageData);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/octet-stream',
+                    'Prediction-Key: ' . $customVisionPredictionKey
+                ));
+
+                $result = curl_exec($ch);
+                $decodedResult = json_decode($result, true);
+
+                if ($decodedResult && isset($decodedResult['predictions'][0]['tagName'])) {
+                    $predictedClass = $decodedResult['predictions'][0]['tagName'];
+                    echo "<p>Classified as: $predictedClass</p>";
+                    $tags = $predictedClass;
+                } else {
+                    echo "<p>Unable to classify the image or prediction result is invalid.</p>";
+                    $tags = 'Unknown'; // Set a default value for $tags
+                }
+
+                curl_close($ch);
 
                 // Continue with the database insertion
                 $insertQuery = "INSERT INTO Images (ImageName, Class) VALUES (?, ?)";
