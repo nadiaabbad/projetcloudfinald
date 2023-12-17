@@ -13,7 +13,7 @@ $connectionOptions = array(
 $conn = sqlsrv_connect($serverName, $connectionOptions);
 
 // Vérifier la connexion
-if (!$conn) {
+if (!$conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 ?>
