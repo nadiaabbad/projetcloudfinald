@@ -36,7 +36,7 @@
                 $imagePath = $imageDirectory . $fileName;
                 $customVisionEndpoint = "https://porjectpredictionfinal.cognitiveservices.azure.com/"; // Replace with your Custom Vision endpoint
                 $customVisionPredictionKey = "0881faa437b44587849fb6f0374932be"; // Replace with your Custom Vision prediction key
-                $customVisionIterationId = "044e4e9b-23e5-44c3-9cf0-86b754c966f2"; // Replace with your Custom Vision iteration ID
+                $customVisionIterationId = "d28e2e61-d67a-46f6-a5b0-8499f2c165ea"; // Replace with your Custom Vision iteration ID
 
                 // Create a POST request to the Custom Vision prediction endpoint
                 $ch = curl_init($customVisionEndpoint . "/customvision/v3.0/Prediction/$customVisionIterationId/classify/iterations/Iteration1/image");
