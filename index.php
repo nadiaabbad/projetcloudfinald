@@ -105,7 +105,7 @@
     <!-- Test the database connection -->
     <?php
     // Test query
-    $query = "SELECT TOP 10 ImageID, ImageName, Class FROM Images";
+    $query = "SELECT TOP 30 ImageID, ImageName, Class FROM Images";
     $result = sqlsrv_query($conn, $query);
 
     if ($result === false) {
